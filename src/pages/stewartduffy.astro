@@ -1,0 +1,197 @@
+---
+interface Job {
+  link: string;
+  name: string;
+  city: string;
+  startDate: string;
+  endDate: string;
+}
+
+import Layout from "../layouts/Layout.astro";
+import "@fontsource-variable/andada-pro";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+import Nav from "../components/Nav.astro";
+
+const url = [
+  // Length issue
+  `https://gist.githubusercontent.com`,
+  `/stewartduffy/1b0a9759dfba523807514af7d11df6ca`,
+  `/raw/stewartduffy-data.json`,
+].join("");
+
+const response = await fetch(url);
+const data = await response.json();
+
+const jobs = data.jobs;
+---
+
+<Layout title="Welcome to Astro.">
+  <div>
+    <div class="header">
+      <h1 class="heading-logo text-hide">
+        Stewart Duffy / Front-End Developer..
+      </h1>
+      <Nav />
+    </div>
+
+    <div class="container main-container">
+      <div class="main">
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-anchor"></i>
+          </div>
+          <div class="col-md-11">
+            <p>
+              Hello! I'm Stewart Duffy, a{" "}
+              <strong>Front-End Developer</strong> who makes websites and apps.
+              I mostly trade in the trifecta of HTML5, CSS3 &amp; JavaScript,
+              but like any self-respecting digital worker I utilise an array of
+              other tools &amp; tech to get the job done..
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-coffee"></i>
+          </div>
+          <div class="col-md-11">
+            <p>
+              I enjoy what I do, and I love the web development community.
+              Naturally I like to meet other fellow web workers, so I regularly
+              go to local meetups, and I jump at the opportunity to attend
+              conferences &amp; workshops to learn from the masters.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-code"></i>
+          </div>
+          <div class="col-md-11">
+            <h3>Conferences &amp; Workshops</h3>
+            <ul class="list-unstyled">
+              <li>Codemania 2016 / Auckland, New Zealand</li>
+              <li>JSConf EU 2013 / Berlin, Germany</li>
+              <li>Full Frontal Tooling Tutorials 2012 / Brighton, UK</li>
+              <li>dotJS 2012 / Paris, France</li>
+              <li class="last">WDCNZ 2011 / Wellington, New Zealand</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-bullhorn"></i>
+          </div>
+          <div class="col-md-11">
+            <p>
+              I have been working in the industry for over six years; working on
+              a variety of projects either through freelancing, contracting or
+              permanent employment. With agency, startup &amp; client-side
+              experience I have worked on projects in multiple industries
+              including Education, Retail, Telecommunications, Print Media,
+              Government and Advertising.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-wrench"></i>
+          </div>
+
+          <div id="cta-work-history" class="col-md-11">
+            <h3>Work History</h3>
+
+            <ul class="list-unstyled">
+              {
+                jobs.map((job: Job) => (
+                  <li>
+                    <a href={job.link}>{job.name}</a> / {job.city}
+                    <br />
+                    <small>
+                      {job.startDate} – {job.endDate}
+                    </small>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <i class="main-icon fa fa-phone"></i>
+          </div>
+          <div id="cta-contact" class="col-md-11">
+            <h3 id="contact">Let’s talk</h3>
+            <p>
+              I am not currently looking for something new, however I am always
+              happy to talk. If you did want to chat you can message me on{" "}
+              <a href="http://nz.linkedin.com/in/stewartduffy/en"> LinkedIn</a>{
+                " "
+              }
+               .
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+  body {
+    background: #cbcbcb;
+    color: #323232;
+  }
+  .header {
+    background: #657e6c;
+    height: 195px;
+    position: relative;
+    padding-top: 40px;
+  }
+
+  .heading-logo {
+    height: 258px;
+    width: 258px;
+    background: url("../img/logo.svg") left top no-repeat;
+    background-size: 258px 258px;
+    position: relative;
+    margin: 0 auto;
+    z-index: 5;
+  }
+  .no-svg .heading-logo {
+    background: url("../img/logo.png") left top no-repeat;
+  }
+  .main-container {
+    margin-top: 138px;
+    padding-top: 32px;
+    border-top: #323232 solid 2px;
+  }
+  .main-container p,
+  .main-container li {
+    font-family: "Andada Pro Variable", sans-serif;
+    font-size: 22px;
+  }
+  .main-container h3,
+  .main-container strong {
+    font-family: "Andada Pro Variable", sans-serif;
+    font-weight: "normal";
+    margin-top: 0;
+  }
+  .main-container .main-icon {
+    font-size: 60px;
+  }
+  .main-container .row {
+    margin-bottom: 30px;
+  }
+  .main-container li {
+    margin-bottom: 10px;
+  }
+  .main-container li.last {
+    margin-bottom: 0px;
+  }
+</style>
