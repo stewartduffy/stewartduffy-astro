@@ -1,0 +1,98 @@
+---
+interface NavLink {
+  url: string;
+  text: string;
+}
+
+const links = [
+  {
+    text: "home",
+    url: "/",
+  },
+  {
+    text: "work history",
+    url: "/work-history",
+  },
+  {
+    text: "confs",
+    url: "/confs",
+  },
+  {
+    text: "contact",
+    url: "/contact",
+  },
+  {
+    text: "github",
+    url: "http://github.com/stewartduffy",
+  },
+  {
+    text: "linkedin",
+    url: "http://nz.linkedin.com/in/stewartduffy/en",
+  },
+  {
+    text: "spotify",
+    url: "https://open.spotify.com/user/1143680138",
+  },
+];
+---
+
+<div class="header">
+  <h1>Stewart Duffy</h1>
+
+  <ul class="nav">
+    {
+      links.map((link: NavLink) => (
+        <li>
+          <a href={link.url}>{link.text}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <style>
+    .header {
+      background: var(--stone-11);
+      line-height: var(--font-lineheight-1);
+      font-size: var(--font-size-fluid-3);
+      font-weight: var(--font-weight-9);
+      padding: var(--size-fluid-2);
+    }
+
+    h1 {
+      font-family: "Staatliches", sans-serif;
+      color: var(--stone-1);
+      text-shadow: 1px 1px 2px black;
+      opacity: 0;
+      animation:
+        var(--animation-fade-in) forwards,
+        var(--animation-slide-in-up) forwards;
+      animation-timing-function: var(--ease-squish-3);
+    }
+
+    .nav {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: var(--size-2);
+      flex-wrap: wrap;
+
+      & li {
+        padding: 0;
+      }
+
+      & a {
+        color: var(--violet-6);
+
+        &:hover {
+          color: var(--stone-1);
+        }
+      }
+    }
+
+    /* This adds the "x" between the nav */
+    li + li:before {
+      padding-right: var(--size-2);
+      content: "×";
+      color: var(--stone-1);
+    }
+  </style>
+</div>
