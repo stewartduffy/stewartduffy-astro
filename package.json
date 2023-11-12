@@ -14,6 +14,7 @@
     "@astrojs/markdoc": "^0.7.1",
     "@astrojs/mdx": "^1.1.4",
     "@astrojs/react": "^3.0.4",
+    "@astrojs/vercel": "^5.2.0",
     "@fontsource-variable/andada-pro": "^5.0.9",
     "@fontsource/staatliches": "^5.0.17",
     "@fortawesome/fontawesome-free": "^6.4.2",
