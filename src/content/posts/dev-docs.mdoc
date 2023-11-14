@@ -1,0 +1,141 @@
+---
+title: Dev Docs
+---
+My curated list of dev hacks, notes and fixes. Props to&nbsp;[@xemasiv](https://github.com/xemasiv)for the&nbsp;[idea](https://github.com/xemasiv/my-dev-fixes))
+
+## **Update all packages from storybook**
+
+```bash
+npx npm-check-updates '/storybook/' -u && npm install
+```
+
+## **Change port for create-react-app**
+
+Change the start script to from
+
+```
+"start": "react-scripts start"
+```
+
+to
+
+```
+"start": "PORT=3006 react-scripts start"
+```
+
+[Source](https://stackoverflow.com/questions/40714583/how-to-specify-a-port-to-run-a-create-react-app-based-project)
+
+## **Close single simulator in Xcode**
+
+Select Simulator.. Go into File Menu -> Close window or press [Command + W ]. It will close the simulator which is on top.[Source](https://stackoverflow.com/questions/45165635/how-to-quit-or-close-single-simulator-from-opened-multiple-simulator-in-xcode-9)
+
+## **React Native expo changes not reloaded**
+
+```
+rm .git/index.lock
+
+```
+
+[Source](https://github.com/facebook/react-native/issues/4357#issuecomment-394448806)
+
+## **Hot Links**
+
+- [devhints](https://devhints.io/)
+- [python-vs-javascript](https://sayazamurai.github.io/python-vs-javascript/)
+
+## **Per-repository SSH keys**
+
+If you want to use different keys depending on the repository you are working on, you can issue the following command while inside your repository:
+
+```
+git config core.sshCommand "ssh -o IdentitiesOnly=yes -i ~/.ssh/private-key-filename-for-this-repository -F /dev/null"
+
+```
+
+This will not use the SSH Agent and requires at least Git 2.10.
+
+[Source](https://docs.gitlab.com/ee/ssh/#per-repository-ssh-keys)
+
+## **Kill Chrome Command**
+
+```
+killall -9 "Google Chrome"
+
+```
+
+## **Lofty Concepts**
+
+- [Lerna and Yarn Workspaces](https://medium.com/@NareshBhatia/sharing-ui-components-with-lerna-and-yarn-workspaces-be1ebca06efe)
+
+## **Code Playgrounds**
+
+- front-end languages like HTML, CSS, JavaScript etc&nbsp;[Codepen](https://codepen.io/)
+- Better for web apps with support for imports etc&nbsp;[codesandbox](https://codesandbox.io/)
+- Like codepen with support for serverside (Node, PHP etc)&nbsp;[Glitch](https://glitch.com/edit/#!/clever-albacore)
+- React Native Flexbox&nbsp;[Yoga Layout](https://yogalayout.com/playground)
+- Dexter's Lab (The playground of lodash and lodash/fp)&nbsp;[Dexter's Lab](http://dexters-lab.io/)
+- Like Codepen but for React Native&nbsp;[Snack](https://snack.expo.io/)[https://runkit.com/home#endpoint](https://runkit.com/home#endpoint)
+
+## **Cheat Sheets**
+
+- [The Full React Native Layout Cheat Sheet](https://medium.com/@drorbiran/the-full-react-native-layout-cheat-sheet-a4147802405c/)
+
+## **Axios catch error**
+
+- [Axios catch error returns javascript error not server response](https://github.com/axios/axios/issues/960#issuecomment-398269712/)
+
+## **Disable eslint for a file**
+
+```
+/* eslint-disable */
+
+```
+
+## **Find files with an extention in dir**
+
+```
+find ./components -type f -name '*.stories.tsx'
+
+```
+
+## **Set a stage status in Jenkins Pipelines**
+
+```
+pipeline {
+    agent any
+    stages {
+        stage('1') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+        stage('2') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh "exit 1"
+                }
+            }
+        }
+        stage('3') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+    }
+}
+
+```
+
+## **Misc links**
+
+- [How to Target Email Clients](https://howtotarget.email/)
+
+## **Concepts**
+
+### **Redux**
+
+- [beginners guide to redux middleware](https://www.codementor.io/vkarpov/beginner-s-guide-to-redux-middleware-du107uyud)
+
+### [**Testing**](https://github.localhost/#testing)
+
+- [An in-depth beginner's guide to testing React applications](https://jkettmann.com/beginners-guide-to-testing-react/)
