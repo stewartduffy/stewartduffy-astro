@@ -1,24 +1,5 @@
 ---
-interface Job {
-  link: string;
-  name: string;
-  city: string;
-  startDate: string;
-  endDate: string;
-}
-
 import Layout from "../layouts/Layout.astro";
-
-const url = [
-  // Length issue
-  `https://gist.githubusercontent.com`,
-  `/stewartduffy/1b0a9759dfba523807514af7d11df6ca`,
-  `/raw/stewartduffy-data.json`,
-].join("");
-
-const response = await fetch(url);
-const data = await response.json();
-const jobs = data.jobs;
 ---
 
 <Layout title="Welcome to Astro.">
@@ -49,25 +30,6 @@ const jobs = data.jobs;
         worked on projects in multiple industries including Education, Retail,
         Telecommunications, Print Media, Government and Advertising.
       </p>
-    </div>
-  </div>
-  <div class="row">
-    <div id="cta-work-history" class="col-md-11">
-      <h3>Work History</h3>
-
-      <ul>
-        {
-          jobs.map((job: Job) => (
-            <li>
-              <a href={job.link}>{job.name}</a> / {job.city}
-              <br />
-              <small>
-                {job.startDate} – {job.endDate}
-              </small>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </div>
 </Layout>
